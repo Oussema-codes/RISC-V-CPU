@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 600" font-family="ui-sans-serif,Segoe UI,Roboto,Arial,sans-serif">
+  <rect width="1060" height="600" fill="#ffffff"/>
+  <defs>
+    <marker id="d" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#334155"/>
+    </marker>
+    <marker id="dc" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#b45309"/>
+    </marker>
+  </defs>
+
+  <text x="30" y="34" font-size="22" font-weight="700" fill="#0f172a">Single-cycle RV32I datapath</text>
+  <text x="30" y="56" font-size="12" fill="#64748b">Solid = data (32-bit). Dashed amber = control signals from the Control Unit. One instruction completes every clock.</text>
+
+  <!-- Control band -->
+  <rect x="30" y="72" width="1000" height="46" rx="8" fill="#fff7ed" stroke="#b45309"/>
+  <text x="44" y="92" font-size="13" font-weight="700" fill="#7c2d12">Control Unit</text>
+  <text x="44" y="109" font-size="11" fill="#9a3412">from opcode/funct → RegWrite · ALUSrc(A,B) · ALUCtrl · ResultSrc · MemWrite · Branch · Jump</text>
+
+  <!-- next-PC mux -->
+  <path d="M40,300 L64,288 L64,372 L40,360 Z" fill="#eef2ff" stroke="#334155"/>
+  <text x="52" y="336" font-size="10" text-anchor="middle" fill="#334155" transform="rotate(-90 52 336)">PCsrc</text>
+
+  <!-- PC -->
+  <rect x="90" y="305" width="70" height="55" rx="8" fill="#eff6ff" stroke="#334155"/>
+  <text x="125" y="330" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">PC</text>
+  <text x="125" y="348" font-size="10" text-anchor="middle" fill="#475569">addr</text>
+
+  <!-- +4 adder -->
+  <rect x="150" y="215" width="56" height="38" rx="6" fill="#f1f5f9" stroke="#334155"/>
+  <text x="178" y="239" font-size="13" font-weight="700" text-anchor="middle" fill="#0f172a">+4</text>
+
+  <!-- Instruction memory -->
+  <rect x="200" y="300" width="95" height="66" rx="8" fill="#fdf4ff" stroke="#334155"/>
+  <text x="247" y="328" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">Instr</text>
+  <text x="247" y="344" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">Memory</text>
+
+  <!-- Register file -->
+  <rect x="360" y="285" width="120" height="120" rx="8" fill="#f0fdf4" stroke="#334155"/>
+  <text x="420" y="308" font-size="13" font-weight="700" text-anchor="middle" fill="#0f172a">Register File</text>
+  <text x="368" y="332" font-size="10" fill="#475569">rs1 →</text>
+  <text x="368" y="352" font-size="10" fill="#475569">rs2 →</text>
+  <text x="368" y="372" font-size="10" fill="#475569">rd  →</text>
+  <text x="368" y="392" font-size="10" fill="#475569">wd  →</text>
+  <text x="474" y="340" font-size="10" text-anchor="end" fill="#475569">→ rd1</text>
+  <text x="474" y="372" font-size="10" text-anchor="end" fill="#475569">→ rd2</text>
+
+  <!-- Imm gen -->
+  <rect x="360" y="440" width="120" height="46" rx="8" fill="#e9d5ff" stroke="#334155"/>
+  <text x="420" y="463" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">Imm Gen</text>
+  <text x="420" y="479" font-size="10" text-anchor="middle" fill="#475569">sign-extend</text>
+
+  <!-- A mux -->
+  <path d="M512,300 L532,290 L532,362 L512,352 Z" fill="#eef2ff" stroke="#334155"/>
+  <text x="522" y="328" font-size="9" text-anchor="middle" fill="#334155" transform="rotate(-90 522 328)">A src</text>
+  <!-- B mux -->
+  <path d="M512,372 L532,362 L532,430 L512,420 Z" fill="#eef2ff" stroke="#334155"/>
+  <text x="522" y="398" font-size="9" text-anchor="middle" fill="#334155" transform="rotate(-90 522 398)">B src</text>
+
+  <!-- ALU -->
+  <path d="M560,300 L620,320 L620,380 L560,400 L560,360 L575,350 L560,340 Z" fill="#fefce8" stroke="#334155"/>
+  <text x="595" y="355" font-size="13" font-weight="700" text-anchor="middle" fill="#0f172a">ALU</text>
+
+  <!-- Branch unit -->
+  <rect x="560" y="440" width="120" height="42" rx="8" fill="#fef9c3" stroke="#334155"/>
+  <text x="620" y="463" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">Branch cmp</text>
+  <text x="620" y="478" font-size="9" text-anchor="middle" fill="#475569">take?</text>
+
+  <!-- PC+imm target adder -->
+  <rect x="600" y="150" width="90" height="38" rx="6" fill="#f1f5f9" stroke="#334155"/>
+  <text x="645" y="174" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">PC + imm</text>
+
+  <!-- Data memory -->
+  <rect x="720" y="300" width="105" height="80" rx="8" fill="#fdf4ff" stroke="#334155"/>
+  <text x="772" y="332" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">Data</text>
+  <text x="772" y="348" font-size="12" font-weight="700" text-anchor="middle" fill="#0f172a">Memory</text>
+  <text x="772" y="366" font-size="9" text-anchor="middle" fill="#475569">LW / SW</text>
+
+  <!-- Writeback mux -->
+  <path d="M865,300 L885,290 L885,392 L865,382 Z" fill="#eef2ff" stroke="#334155"/>
+  <text x="875" y="345" font-size="9" text-anchor="middle" fill="#334155" transform="rotate(-90 875 345)">Result src</text>
+  <text x="905" y="342" font-size="10" fill="#475569">result</text>
+
+  <!-- ===== DATA WIRES ===== -->
+  <!-- PCsrc -> PC -->
+  <line x1="64" y1="330" x2="86" y2="330" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <!-- PC -> IMEM -->
+  <line x1="160" y1="332" x2="196" y2="332" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <!-- PC -> +4 -->
+  <path d="M125,305 L125,234 L148,234" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <!-- PC -> PC+imm adder -->
+  <path d="M170,305 L170,169 L598,169" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#d)"/>
+  <!-- +4 -> writeback mux path (PC+4 link value) -->
+  <path d="M206,234 L340,234 L340,470 L855,470 L855,375 L863,375" fill="none" stroke="#94a3b8" stroke-width="1.4" marker-end="url(#d)"/>
+  <text x="352" y="228" font-size="9" fill="#64748b">PC+4 (link, for JAL/JALR)</text>
+  <!-- +4 -> PCsrc (default next PC) -->
+  <path d="M178,215 L178,130 L20,130 L20,318 L38,318" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#d)"/>
+  <text x="30" y="124" font-size="9" fill="#64748b">PC+4</text>
+  <!-- IMEM -> regfile / imm / control (instruction bus) -->
+  <line x1="295" y1="333" x2="356" y2="333" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <path d="M320,333 L320,462 L356,462" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#d)"/>
+  <text x="300" y="300" font-size="9" fill="#64748b">instr</text>
+  <!-- regfile rd1 -> A mux -->
+  <line x1="480" y1="333" x2="510" y2="320" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <!-- regfile rd2 -> B mux -->
+  <path d="M480,368 L496,368 L496,392 L510,392" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <!-- imm -> B mux -->
+  <path d="M480,462 L500,462 L500,410 L510,410" fill="none" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <!-- imm -> PC+imm adder -->
+  <path d="M470,486 L540,486 L540,180 L598,180" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#d)"/>
+  <!-- A mux -> ALU -->
+  <line x1="532" y1="322" x2="558" y2="322" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <!-- B mux -> ALU -->
+  <line x1="532" y1="392" x2="558" y2="378" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <!-- regfile rd1/rd2 -> branch unit -->
+  <path d="M485,340 L500,340 L500,450 L558,450" fill="none" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#d)"/>
+  <!-- ALU -> data mem addr -->
+  <line x1="620" y1="350" x2="716" y2="350" stroke="#334155" stroke-width="2" marker-end="url(#d)"/>
+  <text x="640" y="344" font-size="9" fill="#64748b">addr</text>
+  <!-- rd2 -> data mem write data -->
+  <path d="M505,392 L505,398 L700,398 L700,372 L716,372" fill="none" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#d)"/>
+  <!-- ALU -> writeback mux -->
+  <path d="M620,335 L840,335 L840,315 L863,315" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#d)"/>
+  <!-- data mem read -> writeback mux -->
+  <path d="M825,345 L848,345 L848,345 L863,345" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#d)"/>
+  <!-- writeback -> regfile wd -->
+  <path d="M885,340 L940,340 L940,510 L330,510 L330,388 L356,388" fill="none" stroke="#334155" stroke-width="1.6" marker-end="url(#d)"/>
+  <text x="600" y="522" font-size="9" fill="#64748b">write-back bus → Register File write port</text>
+  <!-- PC+imm target -> PCsrc (branch/JAL) -->
+  <path d="M645,150 L645,140 L10,140 L10,348 L38,348" fill="none" stroke="#334155" stroke-width="1.4" marker-end="url(#d)"/>
+  <text x="30" y="152" font-size="9" fill="#64748b">branch / JAL target</text>
+  <!-- ALU result -> PCsrc (JALR) -->
+  <path d="M615,378 L615,388 L28,388 L28,362 L38,362" fill="none" stroke="#94a3b8" stroke-width="1.2" marker-end="url(#d)"/>
+  <text x="30" y="402" font-size="9" fill="#64748b">JALR target (ALU)</text>
+
+  <!-- ===== CONTROL (amber dashed) ===== -->
+  <line x1="52" y1="118" x2="52" y2="286" stroke="#b45309" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#dc)"/>
+  <line x1="522" y1="118" x2="522" y2="286" stroke="#b45309" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#dc)"/>
+  <line x1="590" y1="118" x2="590" y2="298" stroke="#b45309" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#dc)"/>
+  <line x1="772" y1="118" x2="772" y2="298" stroke="#b45309" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#dc)"/>
+  <line x1="875" y1="118" x2="875" y2="286" stroke="#b45309" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#dc)"/>
+  <line x1="420" y1="118" x2="420" y2="283" stroke="#b45309" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#dc)"/>
+</svg>
